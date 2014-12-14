@@ -1,4 +1,4 @@
-# TeamCity Continuous Integration server and agent in Docker
+# TeamCity Continuous Integration server and agent Docker containers
 
 This project contains two Docker containers for deployment [TeamCity](https://www.jetbrains.com/teamcity/) server and agents.
 It also could be running  on [CoreOS](https://coreos.com) cluster.
@@ -104,7 +104,7 @@ Create `teamcity-agent.service` service configuration for TeamCity build agent
 
     # Pre-start and Start
     ExecStartPre=-/usr/bin/docker pull clayman/teamcity_agent
-    ExecStartPre=-/usr/bin/docker create --name teamcity-agent -e TEAMCITY_SERVER=http://teamcity_server:8111 clayman/teamcity_agent
+    ExecStartPre=-/usr/bin/docker create --name teamcity-agent -e TEAMCITY_SERVER=http://${COREOS_PUBLIC_IPV4}:8111 clayman/teamcity_agent
     ExecStart=/usr/bin/docker start -a teamcity-agent
 
     # Stop

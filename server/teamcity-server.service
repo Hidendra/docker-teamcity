@@ -1,0 +1,32 @@
+[Unit]
+Description=TeamCity Continuous Integration server
+
+# Requirements
+Requires=etcd.service
+Requires=docker.service
+
+# Dependency ordering
+After=etcd.service
+After=docker.service
+
+[Service]
+# Let processes take awhile to start up (for first run Docker containers)
+TimeoutStartSec=0
+
+# Change killmode from "control-group" to "none" to let Docker remove
+# work correctly.
+KillMode=none
+
+# Get CoreOS environmental variables
+EnvironmentFile=/etc/environment
+
+# Pre-start and Start
+ExecStartPre=-/usr/bin/docker pull clayman/teamcity_server:9.0
+ExecStartPre=-/usr/bin/docker create --name teamcity-server -p ${COREOS_PUBLIC_IPV4}:8111:8111 clayman/teamcity_server
+ExecStart=/usr/bin/docker start -a teamcity-server
+
+# Stop
+ExecStop=/usr/bin/docker stop teamcity-server
+
+[X-Fleet]
+Conflicts=teamcity-server.service
