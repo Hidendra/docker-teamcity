@@ -57,7 +57,7 @@ Create `teamcity-server.service` service configuration for TeamCity server
 
     # Pre-start and Start
     ExecStartPre=-/usr/bin/docker pull clayman/teamcity_server:9.0
-    ExecStartPre=-/usr/bin/docker create --name teamcity-server -p ${COREOS_PUBLIC_IPV4}:8111:8111 clayman/teamcity_server
+    ExecStartPre=-/usr/bin/docker create --name teamcity-server -p ${COREOS_PUBLIC_IPV4}:8111:8111 clayman/teamcity_server:9.0
     ExecStart=/usr/bin/docker start -a teamcity-server
 
     # Stop
