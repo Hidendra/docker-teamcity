@@ -1,0 +1,10 @@
+# Mr Developer
+.project
+.pydevproject
+.idea
+.codeintel
+.vagrant
+conf
+*.orig
+*.sublime-project
+*.sublime-workspace
