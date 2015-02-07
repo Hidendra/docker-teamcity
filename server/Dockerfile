@@ -1,7 +1,7 @@
 FROM dockerfile/java:oracle-java7
 MAINTAINER clayman <clayman74@gmail.com>
 
-ENV TEAMCITY_PACKAGE TeamCity-9.0.tar.gz
+ENV TEAMCITY_PACKAGE TeamCity-9.0.2.tar.gz
 ENV TEAMCITY_DOWNLOAD http://download.jetbrains.com/teamcity
 
 RUN apt-get -y install tar wget
